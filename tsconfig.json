@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-feature-flags": [
+        "dist/ngx-feature-flags"
+      ],
+      "ngx-feature-flags/*": [
+        "dist/ngx-feature-flags/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
