@@ -2,7 +2,7 @@ import { Directive, Input, TemplateRef, ViewContainerRef, OnInit } from '@angula
 import { NgxFeatureFlagsService } from '../public-api';
 
 @Directive({
-  selector: '[libShowIfFeature]'
+  selector: '[ngxShowIfFeature]'
 })
 export class ShowIfFeatureDirective implements OnInit {
   private featureName: string;
