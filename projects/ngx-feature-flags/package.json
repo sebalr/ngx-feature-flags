@@ -11,10 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/neocomplexx/ngx-neo-modal"
+    "url": "https://github.com/sebalr/ngx-feature-flags"
   },
   "bugs": {
-    "url": "https://github.com/neocomplexx/ng-neo-modal/issues"
+    "url": "https://github.com/sebalr/ngx-feature-flags/issues"
   },
   "keywords": [
     "Angular",
