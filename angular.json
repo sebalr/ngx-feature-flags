@@ -69,6 +69,11 @@
           "options": {
             "browserTarget": "ngx-flags:build"
           },
+          "sourceMap": {
+            "scripts": true,
+            "styles": true,
+            "vendor": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "ngx-flags:build:production"
@@ -159,6 +164,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ngx-flags"
 }

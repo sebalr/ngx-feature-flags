@@ -9,5 +9,5 @@ const featureFlagsServiceFactory = (provider: FeaturesConfigurationService) => {
 export let FeatureFlagServiceProvider = {
   provide: NgxFeatureFlagsService,
   useFactory: featureFlagsServiceFactory,
-  // deps: [userService]
+  deps: [FeaturesConfigurationService]
 };

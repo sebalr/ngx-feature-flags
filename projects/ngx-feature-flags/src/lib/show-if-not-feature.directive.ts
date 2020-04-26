@@ -8,7 +8,7 @@ export class ShowIfNotFeatureDirective implements OnInit {
 
   private featureName: string;
 
-  @Input() set neoShowIfFeature(feature: string) {
+  @Input() set ngxShowIfNotFeature(feature: string) {
     this.featureName = feature;
     this.showOrHide();
   }

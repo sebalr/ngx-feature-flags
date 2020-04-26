@@ -7,7 +7,7 @@ import { NgxFeatureFlagsService } from '../public-api';
 export class ShowIfFeatureDirective implements OnInit {
   private featureName: string;
 
-  @Input() set neoShowIfFeature(feature: string) {
+  @Input() set ngxShowIfFeature(feature: string) {
     this.featureName = feature;
     this.showOrHide();
   }
