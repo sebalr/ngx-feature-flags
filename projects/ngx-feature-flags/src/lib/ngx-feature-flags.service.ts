@@ -1,4 +1,3 @@
-import { ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 
 export class NgxFeatureFlagsService {

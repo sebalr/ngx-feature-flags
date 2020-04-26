@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, CanActivateChild, ActivatedRouteSnapshot } from '@angular/router';
 import { NgxFeatureFlagsService } from './ngx-feature-flags.service';
 
 @Injectable({

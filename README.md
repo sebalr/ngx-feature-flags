@@ -1,27 +1,100 @@
-# NgxFlags
+# NgxFeatureFlags
+This is a feature flags library for Angular.
+You could use it as a custom *ngIf to show or hide elements based in a feature flags configuration.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+## Configuration
+Create a feature.service.provider.ts with a factory provider.
 
-## Development server
+```ts
+// ngx-feature-flags.service.provider.ts
+import { FeaturesConfigurationService } from './features-configuration.service';
+import { NgxFeatureFlagsService } from 'ngx-feature-flags';
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+const featureFlagsServiceFactory = (provider: FeaturesConfigurationService) => {
+  return new NgxFeatureFlagsService(provider.getFeatureFlags);
 
-## Code scaffolding
+};
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+export let FeatureFlagServiceProvider = {
+  provide: NgxFeatureFlagsService,
+  useFactory: featureFlagsServiceFactory,
+  deps: [FeaturesConfigurationService]
+};
 
-## Build
+// features-configuration.service.ts
+import { Injectable } from '@angular/core';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+@Injectable({
+  providedIn: 'root'
+})
+export class FeaturesConfigurationService {
 
-## Running unit tests
+  constructor() { }
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  public getFeatureFlags = async (): Promise<Map<string, boolean>> => {
+    const flags = new Map<string, boolean>();
+    flags.set('featureA', true);
+    flags.set('featureB', false);
+    return flags;
+  }
+}
+```
 
-## Running end-to-end tests
+Add the service provider to providers array in app.module
+```ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+import { AppComponent } from './app.component';
+import { FeatureFlagServiceProvider } from './ngx-feature-flags.service.provider';
+import { NgxFeatureFlagsModule } from 'ngx-feature-flags';
 
-## Further help
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxFeatureFlagsModule
+  ],
+  providers: [FeatureFlagServiceProvider],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Finally, init the service
+```ts
+// App component
+constructor(private flagService: NgxFeatureFlagsService) {
+  this.flagService.initialize();
+}
+```
+
+And the directives in the HTML
+```html
+<li *ngxShowIfFeature="'featureB'">
+    <p>Feature B </p>
+</li>
+<li *ngxShowIfNotFeature="'featureC'">
+    <p>Feature C </p>
+</li>
+```
+
+There is also an Route guard
+```ts
+{
+    path: 'path-to-feature-a',
+    component: FeatureAComponent,
+    canActivate: [ FeatureFlagsGuard ],
+    data: { featureFlag: 'featureA' }
+}
+```
+
+Finally, you could also check manually for features using the NgxFeatureFlagsService
+
+```ts
+constructor(private featureService: NgxFeatureFlagsService) {
+    const aEnabled = this.featureService.featureOn('featureA');
+}
+```

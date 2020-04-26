@@ -1,8 +1,30 @@
 {
   "name": "ngx-feature-flags",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0"
-  }
+  },
+  "author": {
+    "name": "Sebastian Larrieu",
+    "email": "larrieu.sebastian@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neocomplexx/ngx-neo-modal"
+  },
+  "bugs": {
+    "url": "https://github.com/neocomplexx/ng-neo-modal/issues"
+  },
+  "keywords": [
+    "Angular",
+    "Feature",
+    "Toggle",
+    "Flag",
+    "Flags",
+    "Directive",
+    "Service",
+    "Guard"
+  ],
+  "license": "MIT"
 }

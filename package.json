@@ -1,6 +1,6 @@
 {
   "name": "ngx-flags",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,8 +8,13 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "package": "npm run build-lib && npm run copy-files && npm run npm-pack",
+    "debug": "npm run build-lib && ng serve",
     "build-lib": "ng build ngx-feature-flags",
-    "debug": "npm run build-lib && ng serve"
+    "copy-files": "npm run copy-license && npm run copy-readme",
+    "copy-license": "cp ./LICENSE ./dist/ngx-feature-flags",
+    "copy-readme": "cp ./README.md ./dist/ngx-feature-flags",
+    "npm-pack": "cd dist/ngx-feature-flags && npm pack"
   },
   "private": true,
   "dependencies": {
