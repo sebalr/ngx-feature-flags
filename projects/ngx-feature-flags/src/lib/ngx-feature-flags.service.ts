@@ -1,8 +1,13 @@
+import { ChangeDetectorRef, ApplicationRef } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 
 export class NgxFeatureFlagsService {
 
   private featureFlags: Map<string, boolean>;
   private initialized = false;
+
+  private refresh: Subject<boolean>;
+  public refresh$: Observable<boolean>;
 
   get Initialized() {
     return this.initialized;
@@ -10,6 +15,8 @@ export class NgxFeatureFlagsService {
 
   constructor(private initFun: () => Promise<Map<string, boolean>>) {
     this.featureFlags = new Map();
+    this.refresh = new Subject();
+    this.refresh$ = this.refresh.asObservable();
   }
 
   public featureOff(featureName: string) {
@@ -29,5 +36,6 @@ export class NgxFeatureFlagsService {
     this.featureFlags.clear();
     this.featureFlags = await this.initFun();
     this.initialized = true;
+    this.refresh.next(true);
   }
 }

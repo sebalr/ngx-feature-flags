@@ -1,10 +1,12 @@
-import { Directive, Input, TemplateRef, ViewContainerRef, OnInit } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
 import { NgxFeatureFlagsService } from './ngx-feature-flags.service';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[ngxShowIfFeature]'
 })
-export class ShowIfFeatureDirective implements OnInit {
+export class ShowIfFeatureDirective implements OnInit, OnDestroy {
+
   private featureName: string;
 
   @Input() set ngxShowIfFeature(feature: string) {
@@ -13,12 +15,13 @@ export class ShowIfFeatureDirective implements OnInit {
   }
 
   private hasView = false;
-
+  private subs: Subscription;
 
   constructor(private featureFlagService: NgxFeatureFlagsService, private templateRef: TemplateRef<any>, private vcr: ViewContainerRef) { }
 
   ngOnInit() {
-    this.showOrHide();
+    this.subs = new Subscription();
+    this.subs.add(this.featureFlagService.refresh$.subscribe(() => this.showOrHide()));
   }
 
   private showOrHide() {
@@ -33,6 +36,10 @@ export class ShowIfFeatureDirective implements OnInit {
         this.hasView = false;
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
 }
