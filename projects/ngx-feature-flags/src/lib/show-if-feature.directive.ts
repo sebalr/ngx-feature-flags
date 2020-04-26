@@ -1,5 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef, OnInit } from '@angular/core';
-import { NgxFeatureFlagsService } from '../public-api';
+import { NgxFeatureFlagsService } from './ngx-feature-flags.service';
 
 @Directive({
   selector: '[ngxShowIfFeature]'
