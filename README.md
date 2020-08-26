@@ -98,3 +98,5 @@ constructor(private featureService: NgxFeatureFlagsService) {
     const aEnabled = this.featureService.featureOn('featureA');
 }
 ```
+## Testing
+If you need to add unit test to your project check this project: [ngx-feature-flags-testing](https://www.npmjs.com/package/ngx-feature-flags-testing)
