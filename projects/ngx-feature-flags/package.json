@@ -1,13 +1,13 @@
 {
   "name": "ngx-feature-flags",
-  "version": "1.0.0",
-  "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0"
-  },
+  "version": "14.0.0",
   "author": {
     "name": "Sebastian Larrieu",
     "email": "larrieu.sebastian@gmail.com"
+  },
+  "peerDependencies": {
+    "@angular/common": "^14.2.12",
+    "@angular/core": "^14.2.12"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,8 @@
     "Service",
     "Guard"
   ],
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "license": "MIT"
 }
