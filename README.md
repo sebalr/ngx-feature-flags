@@ -8,7 +8,7 @@ You could use it as a custom \*ngIf to show or hide elements based in a feature 
 | Number | Angular |
 | ------ | ------- |
 | 1.x    | 8       |
-| 14x    | 14      |
+| 14.x    | 14      |
 
 ## Configuration
 
